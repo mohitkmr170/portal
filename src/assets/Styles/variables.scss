@@ -1,0 +1,209 @@
+// ~~~~~~~~~~~Variables~~~~~~~~~~~
+$primary-color: #2e92fa;
+$secondary-color: #258ffb;
+$bg-white: white;
+$bg-content: #f0f0f0;
+$text-weak: #B4B4B4;
+$text-white: white;
+$middle-spacing: 16px;
+$header-dark: #262626;
+
+
+// ~~~~~~~~~~~Body~~~~~~~~~~~
+body {
+  .btn-large {
+    padding: 0 120px;
+  }
+
+  .btn-medium {
+    padding: 0 20px;
+  }
+
+  .btn-small {
+    padding: 0 20px;
+  }
+
+  .ant-btn-primary {
+    background: $primary-color;
+    border-color: darken($primary-color, 15%);
+    color: $text-white;
+
+    &:hover {
+      background-color: darken($primary-color, 15%);
+      color: $text-white;
+    }
+
+    &:focus {
+      background-color: darken($primary-color, 18%);
+      color: $text-white;
+    }
+  }
+
+  .ant-btn-secondary {
+    background: $primary-color;
+    border-color: darken($primary-color, 15%);
+    color: $text-white;
+    margin: 10px;
+
+    &:hover {
+      background-color: darken($primary-color, 18%);
+      color: $text-white;
+    }
+
+    &:focus {
+      background-color: darken($primary-color, 18%);
+      color: $text-white;
+    }
+  }
+
+  .ant-layout-sider-children {
+    position: fixed;
+    width: inherit;
+  }
+
+  .loginPage {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100vh;
+    background-color: $bg-content;
+
+    .login-form {
+      width: 400px;
+      height: 500px;
+      background-color: $bg-white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .input-text {
+        border: $bg-content 1px solid;
+        border-radius: 4px;
+        width: 280px;
+        height: 40px;
+        font-size: 15px;
+        margin-top: 10px;
+      }
+    }
+  }
+
+
+  // ~~~~~~~~~~~Cockpit~~~~~~~~~~~
+  .cockpit {
+    .cockpit-logo {
+      height: 60px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      img {
+        margin-top: 10px;
+      }
+    }
+
+    .sider {
+      .sider-menu {
+        border: none;
+      }
+    }
+
+    .header {
+      padding: 0;
+      width: 100vw;
+      height: 50px;
+    }
+
+    .header-top {
+      background: $header-dark;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: fixed;
+      width: inherit;
+      height: inherit;
+      z-index: 10;
+
+      .header-left {
+        display: flex;
+        align-items: center;
+        height: 20px;
+        justify-content: center;
+
+        .trigger {
+          padding: 0 16px 0 25px;
+          margin: 0;
+        }
+      }
+
+      .header-right {
+        float: right;
+        display: flex;
+        align-items: center;
+        padding-right: 20px;
+
+        * {
+          margin: 5px;
+          color: white;
+        }
+      }
+    }
+
+    .footer {
+      text-align: center;
+    }
+
+    .cockpit-content {
+      padding: 1px;
+      background: $bg-content;
+    }
+  }
+
+  .dashboard {
+    padding: 15px 15px 0 15px;
+  }
+
+  .header-inner {
+    width: 100%;
+    background-color: $bg-white;
+    padding: 15px 0 20px 16px;
+  }
+
+  .content {
+    margin: 16px 16px 0px 16px;
+    padding: 16px;
+    min-height: 95vh;
+    background-color: $bg-white;
+  }
+
+  .viewInfo {
+    padding: 20px;
+    background-color: $bg-white;
+  }
+
+  .chartdiv {
+    height: 450px;
+    padding: 24px;
+  }
+
+  .chartdivsm {
+    height: 300px;
+    padding: 30px;
+  }
+
+  .form-item {
+    background: $bg-white;
+    padding: 15px;
+  }
+
+  .fr {
+    float: right;
+  }
+
+  .middle-spacing {
+    margin-top: $middle-spacing;
+  }
+}
