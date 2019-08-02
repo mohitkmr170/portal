@@ -24,7 +24,10 @@ class Login extends Component {
     this.props.form.validateFields((err, values) => {
       if (!err) {
         var promise = new Promise(function(resolve, reject) {
-          if (values.userName === "geekyants" && values.password === "9") {
+          if (
+            values.userName === "mohitkmr170@gmail.com" &&
+            values.password === "password"
+          ) {
             resolve(true);
           } else {
             reject("Invalid Credentials");
@@ -52,7 +55,7 @@ class Login extends Component {
       <div className="loginPage">
         <Form onSubmit={this.handleSubmit} className="login-form">
           {this.state.notice ? (
-            <div>
+            <div style={{ position: "absolute", bottom: 200 }}>
               <Alert
                 message={this.state.notice}
                 type="error"
@@ -64,7 +67,8 @@ class Login extends Component {
             ""
           )}
           <div>
-            <img className="login-logo" src={Logo} alt="LOGO" width="120" />
+            {/* <img className="login-logo" src={Logo} alt="LOGO" width="120" /> */}
+            <h2 className="headers">Wallet Demo Portal</h2>
             <FormItem>
               {getFieldDecorator("userName", {
                 rules: [

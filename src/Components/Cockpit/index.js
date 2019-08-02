@@ -51,15 +51,14 @@ class Cockpit extends Component {
                   height="100px"
                 />
               </div>
-              <img src={logo} alt="Logo" width="55px" />
+              <h2 style={{ color: "#fff", paddingTop: 10 }}>Portal</h2>
             </div>
             <div type="flex" justify="space-around">
               <div className="header-right">
                 <h3>
                   <i className="far fa-bell" />
                 </h3>
-                <img src={flag} alt="" width="25px" height="25px" />
-                <h3>Hi, guest</h3>
+                <h3>Hi, Mohit</h3>
                 <Dropdown overlay={dropDownMenu} placement="bottomCenter">
                   <img src={face} alt="" width="25px" height="25px" />
                 </Dropdown>
@@ -67,7 +66,7 @@ class Cockpit extends Component {
             </div>
           </div>
         </Header>
-        <Layout>
+        <Layout style={{ height: "90%" }}>
           {/* ~~~~~~~~~~~Sider~~~~~~~~~~~ */}
 
           <Sider
@@ -102,27 +101,6 @@ class Cockpit extends Component {
                   <span>Users</span>
                 </Link>
               </Menu.Item>
-
-              <Menu.Item key="3">
-                <Link to="/factories">
-                  <Icon type="tool" />
-                  <span>Factories</span>
-                </Link>
-              </Menu.Item>
-
-              <Menu.Item key="4">
-                <Link to="/projects">
-                  <Icon type="project" />
-                  <span>Projects</span>
-                </Link>
-              </Menu.Item>
-
-              <Menu.Item key="5">
-                <Link to="/products">
-                  <Icon type="shopping-cart" />
-                  <span>Products</span>
-                </Link>
-              </Menu.Item>
             </Menu>
           </Sider>
 
@@ -132,8 +110,16 @@ class Cockpit extends Component {
         </Layout>
 
         {/* ~~~~~~~~~~~Footer~~~~~~~~~~~ */}
-
-        <Footer className="footer">GeekyAnts ©2018 Created by Ants</Footer>
+        <Layout
+          style={{
+            position: "fixed",
+            bottom: 0,
+            right: 0,
+            width: "100%"
+          }}
+        >
+          <Footer className="footer">DigiNextGen ©2019</Footer>
+        </Layout>
       </Layout>
     );
   }

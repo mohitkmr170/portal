@@ -25,7 +25,7 @@ class viewUsers extends Component {
         </div>
 
         <Content className="content">
-          <Row gutter={16}>
+          {/* <Row gutter={16}>
             <Col lg={6} md={12} className="chartdivsm">
               <Pie percent={50} subTitle="Attendance" total="50%" />
             </Col>
@@ -38,50 +38,44 @@ class viewUsers extends Component {
             <Col lg={6} md={12} className="chartdivsm">
               <Pie percent={40} subTitle="Cost" total="40%" />
             </Col>
-          </Row>
+          </Row> */}
           <div className="viewInfo">
             <h3>
               User Info
-              <Button
+              {/* <Button
                 type="secondary"
                 htmlType="submit"
                 className="btn-small fr"
               >
                 <Link to="/users/edit">Edit Details</Link>
-              </Button>
+              </Button> */}
             </h3>
             <Row>
               <Col lg={{ span: 8, offset: 0 }}>
-                <b>Name:</b> John Brown
+                <b>Name:</b> Test User
               </Col>
               <Col lg={{ span: 8, offset: 0 }}>
-                <b>Age:</b> 33
+                <b>Age:</b> 22
               </Col>
-              <Col lg={{ span: 8, offset: 0 }}>
-                <b>User id:</b> 007
-              </Col>
-              <Col lg={{ span: 8, offset: 0 }}>
-                <b>Works at:</b> ABB
+              <Col lg={{ span: 4, offset: 0 }}>
+                <b>User id:</b> uaedbh3748723482g348237
               </Col>
             </Row>
             <hr />
             <h3>Contact Details</h3>
             <Row>
               <Col lg={{ span: 8, offset: 0 }}>
-                <b>Address:</b> 23rd Street, New York
+                <b>Address:</b> Some Test Address
               </Col>
               <Col lg={{ span: 8, offset: 0 }}>
-                <b>Phone:</b> 007007007
+                <b>Phone:</b> 9999999999
               </Col>
               <Col lg={{ span: 8, offset: 0 }}>
-                <b>Email:</b> jb@xyz.com
-              </Col>
-              <Col lg={{ span: 8, offset: 0 }}>
-                <b>Fax:</b> 001001001
+                <b>Email:</b> abc@xyz.com
               </Col>
             </Row>
             <hr />
-            <h3>Contributions</h3>
+            {/* <h3>Contributions</h3>
             <Row>
               <Col lg={{ span: 8, offset: 0 }}>
                 <b>Projects:</b> 10
@@ -89,10 +83,10 @@ class viewUsers extends Component {
               <Col lg={{ span: 8, offset: 0 }}>
                 <b>Technologies:</b> React, Redux, JS
               </Col>
-            </Row>
-            <hr />
+            </Row> */}
+            {/* <hr /> */}
 
-            <h3>Projects Worked</h3>
+            <h3>Transaction Details</h3>
             <div>
               <Table1 />
             </div>

@@ -8,68 +8,38 @@ const data = [
   {
     Id: 0,
     Image: <img src={face} alt="face" width="40" />,
-    Name: "Angelina Brown",
-    email: "abrown@xyz.com",
-    Contributions: "239",
-    Tags: "JS, React, Redux",
-    Followers: "100",
-    Comments: "100",
-    Views: "100"
+    Name: "Test User",
+    email: "abrown@xyz.com"
   },
   {
     Id: 1,
     Image: <img src={face} alt="face" width="40" />,
-    Name: "Angelina Brown",
-    email: "abrown@xyz.com",
-    Contributions: "239",
-    Tags: "JS, React, Redux",
-    Followers: "100",
-    Comments: "100",
-    Views: "100"
+    Name: "Test User",
+    email: "abrown@xyz.com"
   },
   {
     Id: 2,
     Image: <img src={face} alt="face" width="40" />,
-    Name: "Angelina Brown",
-    email: "abrown@xyz.com",
-    Contributions: "239",
-    Tags: "JS, React, Redux",
-    Followers: "100",
-    Comments: "100",
-    Views: "100"
+    Name: "Test User",
+    email: "abrown@xyz.com"
   },
   {
     Id: 3,
     Image: <img src={face} alt="face" width="40" />,
-    Name: "Angelina Brown",
-    email: "abrown@xyz.com",
-    Contributions: "239",
-    Tags: "JS, React, Redux",
-    Followers: "100",
-    Comments: "100",
-    Views: "100"
+    Name: "Test User",
+    email: "abrown@xyz.com"
   },
   {
     Id: 4,
     Image: <img src={face} alt="face" width="40" />,
-    Name: "Angelina Brown",
-    email: "abrown@xyz.com",
-    Contributions: "239",
-    Tags: "JS, React, Redux",
-    Followers: "100",
-    Comments: "100",
-    Views: "100"
+    Name: "Test User",
+    email: "abrown@xyz.com"
   },
   {
     Id: 5,
     Image: <img src={face} alt="face" width="40" />,
-    Name: "Angelina Brown",
-    email: "abrown@xyz.com",
-    Contributions: "239",
-    Tags: "JS, React, Redux",
-    Followers: "100",
-    Comments: "100",
-    Views: "100"
+    Name: "Test User",
+    email: "abrown@xyz.com"
   }
 ];
 
@@ -86,16 +56,16 @@ class Table1 extends Component {
         )
       },
 
-      { title: "email", dataIndex: "email", key: "email" },
-      {
-        title: "Contributions",
-        dataIndex: "Contributions",
-        key: "Contributions"
-      },
-      { title: "Tags", dataIndex: "Tags", key: "Tags" },
-      { title: "Followers", dataIndex: "Followers", key: "Followers" },
-      { title: "Comments", dataIndex: "Comments", key: "Comments" },
-      { title: "Views", dataIndex: "Views", key: "Views" }
+      { title: "email", dataIndex: "email", key: "email" }
+      // {
+      //   title: "Contributions",
+      //   dataIndex: "Contributions",
+      //   key: "Contributions"
+      // },
+      // { title: "Tags", dataIndex: "Tags", key: "Tags" },
+      // { title: "Followers", dataIndex: "Followers", key: "Followers" },
+      // { title: "Comments", dataIndex: "Comments", key: "Comments" },
+      // { title: "Views", dataIndex: "Views", key: "Views" }
     ];
 
     return (
@@ -110,27 +80,6 @@ class Table1 extends Component {
           </Breadcrumb>
         </div>
         <div className="content">
-          <Row gutter={16}>
-            <Col lg={6} md={12} className="chartdivsm">
-              <Pie percent={90} subTitle="Attendance" total="90%" />
-            </Col>
-            <Col lg={6} md={12} className="chartdivsm">
-              <Pie percent={78} subTitle="Efficiency" total="78%" />
-            </Col>
-            <Col lg={6} md={12} className="chartdivsm">
-              <Pie percent={70} subTitle="Rating" total="70%" />
-            </Col>
-            <Col lg={6} md={12} className="chartdivsm">
-              <Pie percent={18} subTitle="Cost" total="18%" />
-            </Col>
-            <Button
-              type="secondary"
-              href="mailto:ant@geekyants.com"
-              className="btn-medium fr"
-            >
-              Mail Head of HR
-            </Button>
-          </Row>
           <Table
             columns={columns}
             dataSource={data}
@@ -138,9 +87,6 @@ class Table1 extends Component {
             bordered={true}
             rowKey="Id"
           />
-          <Button type="secondary" htmlType="submit" className="btn-medium fr">
-            <Link to="/users/add">Add New User</Link>
-          </Button>
         </div>
       </div>
     );

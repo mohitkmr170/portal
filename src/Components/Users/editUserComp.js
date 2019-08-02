@@ -153,7 +153,7 @@ class RegistrationForm extends Component {
               <Link to="/users">Users</Link>
             </Breadcrumb.Item>
 
-            <Breadcrumb.Item>Edit User</Breadcrumb.Item>
+            {/* <Breadcrumb.Item>Edit User</Breadcrumb.Item> */}
           </Breadcrumb>
         </div>
         <div className="content">

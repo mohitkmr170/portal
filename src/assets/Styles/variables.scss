@@ -3,11 +3,10 @@ $primary-color: #2e92fa;
 $secondary-color: #258ffb;
 $bg-white: white;
 $bg-content: #f0f0f0;
-$text-weak: #B4B4B4;
+$text-weak: #b4b4b4;
 $text-white: white;
 $middle-spacing: 16px;
 $header-dark: #262626;
-
 
 // ~~~~~~~~~~~Body~~~~~~~~~~~
 body {
@@ -89,7 +88,6 @@ body {
     }
   }
 
-
   // ~~~~~~~~~~~Cockpit~~~~~~~~~~~
   .cockpit {
     .cockpit-logo {
@@ -154,6 +152,7 @@ body {
 
     .footer {
       text-align: center;
+      background-color: "#F0F2F5";
     }
 
     .cockpit-content {

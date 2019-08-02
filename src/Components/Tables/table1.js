@@ -4,67 +4,67 @@ import { Table } from "antd";
 const data = [
   {
     key: "0",
-    ProjectTitle: "John Brown",
-    Location: "New York No. 1 Lake Park",
-    Manager: "John Brown",
-    Product: "Book",
-    Tags: "none",
-    Time: "100 Days",
+    ProjectTitle: "jkdasbdu2347234bh2j348",
+    Location: "Test User 1",
+    Manager: "Test User",
+    Product: "01/02/2019",
+    Tags: "10000",
+    Time: "Cr",
     Machines: "100",
     Ratings: "100"
   },
   {
     key: "1",
-    ProjectTitle: "John Brown",
-    Location: "New York No. 1 Lake Park",
-    Manager: "John Brown",
-    Product: "Book",
-    Tags: "none",
-    Time: "100 Days",
+    ProjectTitle: "jkdasbdu2347234bh2j348",
+    Location: "Test User 1",
+    Manager: "Test User",
+    Product: "01/02/2019",
+    Tags: "5000",
+    Time: "Dr",
     Machines: "100",
     Ratings: "100"
   },
   {
     key: "2",
-    ProjectTitle: "John Brown",
-    Location: "New York No. 1 Lake Park",
-    Manager: "John Brown",
-    Product: "Book",
-    Tags: "none",
-    Time: "100 Days",
+    ProjectTitle: "jkdasbdu2347234bh2j348",
+    Location: "Test User 1",
+    Manager: "Test User",
+    Product: "01/02/2019",
+    Tags: "10000",
+    Time: "Dr",
     Machines: "100",
     Ratings: "100"
   },
   {
     key: "3",
-    ProjectTitle: "John Brown",
-    Location: "New York No. 1 Lake Park",
-    Manager: "John Brown",
-    Product: "Book",
-    Tags: "none",
-    Time: "100 Days",
+    ProjectTitle: "jkdasbdu2347234bh2j348",
+    Location: "Test User 1",
+    Manager: "Test User",
+    Product: "01/02/2019",
+    Tags: "10000",
+    Time: "Cr",
     Machines: "100",
     Ratings: "100"
   },
   {
     key: "4",
-    ProjectTitle: "John Brown",
-    Location: "New York No. 1 Lake Park",
-    Manager: "John Brown",
-    Product: "Book",
-    Tags: "none",
-    Time: "100 Days",
+    ProjectTitle: "jkdasbdu2347234bh2j348",
+    Location: "Test User 1",
+    Manager: "Test User",
+    Product: "01/02/2019",
+    Tags: "5000",
+    Time: "Cr",
     Machines: "100",
     Ratings: "100"
   },
   {
     key: "5",
-    ProjectTitle: "John Brown",
-    Location: "New York No. 1 Lake Park",
-    Manager: "John Brown",
-    Product: "Book",
-    Tags: "none",
-    Time: "100 Days",
+    ProjectTitle: "jkdasbdu2347234bh2j348",
+    Location: "Test User 1",
+    Manager: "Test User",
+    Product: "01/02/2019",
+    Tags: "10000",
+    Time: "Cr",
     Machines: "100",
     Ratings: "100"
   }
@@ -74,17 +74,15 @@ class Table1 extends Component {
   render() {
     const columns = [
       {
-        title: "Project Title",
+        title: "Transaction ID",
         dataIndex: "ProjectTitle",
         key: "Project Title"
       },
-      { title: "Location", dataIndex: "Location", key: "Location" },
-      { title: "Manager", dataIndex: "Manager", key: "Manager" },
-      { title: "Product", dataIndex: "Product", key: "Product" },
-      { title: "Tags", dataIndex: "Tags", key: "Tags" },
-      { title: "Time", dataIndex: "Time", key: "Time" },
-      { title: "Machines", dataIndex: "Machines", key: "Machines" },
-      { title: "Ratings", dataIndex: "Ratings", key: "Ratings" }
+      { title: "Payer", dataIndex: "Location", key: "Location" },
+      { title: "Payee", dataIndex: "Manager", key: "Manager" },
+      { title: "Time Stamp", dataIndex: "Product", key: "Product" },
+      { title: "Amount", dataIndex: "Tags", key: "Tags" },
+      { title: "Dr/Cr", dataIndex: "Time", key: "Time" }
     ];
 
     return (
