@@ -68,7 +68,7 @@ class Login extends Component {
           )}
           <div>
             {/* <img className="login-logo" src={Logo} alt="LOGO" width="120" /> */}
-            <h2 className="headers">Wallet Demo Portal</h2>
+            <h2 className="headers">MOBILE WALLET</h2>
             <FormItem>
               {getFieldDecorator("userName", {
                 rules: [

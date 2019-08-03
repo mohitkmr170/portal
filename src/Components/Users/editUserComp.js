@@ -13,6 +13,8 @@ import {
   Breadcrumb,
   AutoComplete
 } from "antd";
+import firebase from "../../firebase.js";
+import { withRouter } from "react-router-dom";
 
 const FormItem = Form.Item;
 const Option = Select.Option;
@@ -20,36 +22,32 @@ const AutoCompleteOption = AutoComplete.Option;
 
 const residences = [
   {
-    value: "zhejiang",
-    label: "Zhejiang",
-    children: [
-      {
-        value: "hangzhou",
-        label: "Hangzhou",
-        children: [
-          {
-            value: "xihu",
-            label: "West Lake"
-          }
-        ]
-      }
-    ]
+    value: 10000,
+    label: 10000
   },
   {
-    value: "jiangsu",
-    label: "Jiangsu",
-    children: [
-      {
-        value: "nanjing",
-        label: "Nanjing",
-        children: [
-          {
-            value: "zhonghuamen",
-            label: "Zhong Hua Men"
-          }
-        ]
-      }
-    ]
+    value: 50000,
+    label: 50000
+  }
+];
+const residences1 = [
+  {
+    value: "YES",
+    label: "YES"
+  },
+  {
+    value: "NO",
+    label: "NO"
+  }
+];
+const residences2 = [
+  {
+    value: "YES",
+    label: "YES"
+  },
+  {
+    value: "NO",
+    label: "NO"
   }
 ];
 const formItemLayout = {
@@ -86,6 +84,19 @@ class RegistrationForm extends Component {
     this.props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
         console.log("Received values of form: ", values);
+        let updateConfig = firebase
+          .database()
+          .ref(`users/${this.props.userId}`);
+        updateConfig
+          .update({
+            limit: values.residence[0],
+            kyc: values.residence1[0]
+          })
+          .then(() => {
+            console.log("acds", this.props);
+            this.props.history.push("/Dashboard");
+          })
+          .catch(err => console.log(err));
       }
     });
   };
@@ -125,6 +136,7 @@ class RegistrationForm extends Component {
   };
 
   render() {
+    console.log("asdas", this.props.userId);
     const { getFieldDecorator } = this.props.form;
     const { autoCompleteResult } = this.state;
 
@@ -158,129 +170,43 @@ class RegistrationForm extends Component {
         </div>
         <div className="content">
           <Form onSubmit={this.handleSubmit} className="form-item">
-            <FormItem {...formItemLayout} label="E-mail">
-              {getFieldDecorator("email", {
-                rules: [
-                  {
-                    type: "email",
-                    message: "The input is not valid E-mail!"
-                  },
-                  {
-                    required: true,
-                    message: "Please input your E-mail!"
-                  }
-                ]
-              })(<Input />)}
-            </FormItem>
-            <FormItem {...formItemLayout} label="Password">
-              {getFieldDecorator("password", {
-                rules: [
-                  {
-                    required: true,
-                    message: "Please input your password!"
-                  },
-                  {
-                    validator: this.validateToNextPassword
-                  }
-                ]
-              })(<Input type="password" />)}
-            </FormItem>
-            <FormItem {...formItemLayout} label="Confirm Password">
-              {getFieldDecorator("confirm", {
-                rules: [
-                  {
-                    required: true,
-                    message: "Please confirm your password!"
-                  },
-                  {
-                    validator: this.compareToFirstPassword
-                  }
-                ]
-              })(<Input type="password" onBlur={this.handleConfirmBlur} />)}
-            </FormItem>
-            <FormItem
-              {...formItemLayout}
-              label={
-                <span>
-                  Nickname&nbsp;
-                  <Tooltip title="What do you want others to call you?">
-                    <Icon type="question-circle-o" />
-                  </Tooltip>
-                </span>
-              }
-            >
-              {getFieldDecorator("nickname", {
-                rules: [
-                  {
-                    required: true,
-                    message: "Please input your nickname!",
-                    whitespace: true
-                  }
-                ]
-              })(<Input />)}
-            </FormItem>
-            <FormItem {...formItemLayout} label="Habitual Residence">
-              {getFieldDecorator("residence", {
-                initialValue: ["zhejiang", "hangzhou", "xihu"],
+            <FormItem {...formItemLayout} label="KYC">
+              {getFieldDecorator("residence1", {
                 rules: [
                   {
                     type: "array",
                     required: true,
-                    message: "Please select your habitual residence!"
+                    message: "Please select KYC!"
+                  }
+                ]
+              })(<Cascader options={residences1} />)}
+            </FormItem>
+            <FormItem {...formItemLayout} label="LIMIT">
+              {getFieldDecorator("residence", {
+                rules: [
+                  {
+                    type: "array",
+                    required: true,
+                    message: "Please select Limit!"
                   }
                 ]
               })(<Cascader options={residences} />)}
             </FormItem>
-            <FormItem {...formItemLayout} label="Phone Number">
-              {getFieldDecorator("phone", {
+            <FormItem {...formItemLayout} label="Locked">
+              {getFieldDecorator("residences2", {
                 rules: [
                   {
+                    type: "array",
                     required: true,
-                    message: "Please input your phone number!"
+                    message: "Please select Lock Status!"
                   }
                 ]
-              })(
-                <Input addonBefore={prefixSelector} style={{ width: "100%" }} />
-              )}
-            </FormItem>
-            <FormItem {...formItemLayout} label="Website">
-              {getFieldDecorator("website", {
-                rules: [{ required: true, message: "Please input website!" }]
-              })(
-                <AutoComplete
-                  dataSource={websiteOptions}
-                  onChange={this.handleWebsiteChange}
-                  placeholder="website"
-                >
-                  <Input />
-                </AutoComplete>
-              )}
-            </FormItem>
-            <FormItem
-              {...formItemLayout}
-              label="Captcha"
-              extra="We must make sure that your are a human."
-            >
-              <Row gutter={8}>
-                <Col span={12}>
-                  {getFieldDecorator("captcha", {
-                    rules: [
-                      {
-                        required: true,
-                        message: "Please input the captcha you got!"
-                      }
-                    ]
-                  })(<Input />)}
-                </Col>
-                <Col span={12}>
-                  <Button>Get captcha</Button>
-                </Col>
-              </Row>
+              })(<Cascader options={residences2} />)}
             </FormItem>
 
             <FormItem {...tailFormItemLayout}>
               <Button type="primary" htmlType="submit">
-                Register
+                Update
               </Button>
             </FormItem>
           </Form>
@@ -291,4 +217,4 @@ class RegistrationForm extends Component {
 }
 
 const WrappedRegistrationForm = Form.create()(RegistrationForm);
-export default WrappedRegistrationForm;
+export default withRouter(WrappedRegistrationForm);

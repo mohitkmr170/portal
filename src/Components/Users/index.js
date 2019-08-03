@@ -2,58 +2,64 @@ import React, { Component } from "react";
 import { Table, Button, Breadcrumb, Row, Col } from "antd";
 import { Pie } from "ant-design-pro/lib/Charts";
 import { Link } from "react-router-dom";
-
+import firebase from "../../firebase.js";
+import { currentId } from "../../decision.js";
+import { withRouter } from "react-router-dom";
 const face = require("../../assets/face.png");
-const data = [
-  {
-    Id: 0,
-    Image: <img src={face} alt="face" width="40" />,
-    Name: "Test User",
-    email: "abrown@xyz.com"
-  },
-  {
-    Id: 1,
-    Image: <img src={face} alt="face" width="40" />,
-    Name: "Test User",
-    email: "abrown@xyz.com"
-  },
-  {
-    Id: 2,
-    Image: <img src={face} alt="face" width="40" />,
-    Name: "Test User",
-    email: "abrown@xyz.com"
-  },
-  {
-    Id: 3,
-    Image: <img src={face} alt="face" width="40" />,
-    Name: "Test User",
-    email: "abrown@xyz.com"
-  },
-  {
-    Id: 4,
-    Image: <img src={face} alt="face" width="40" />,
-    Name: "Test User",
-    email: "abrown@xyz.com"
-  },
-  {
-    Id: 5,
-    Image: <img src={face} alt="face" width="40" />,
-    Name: "Test User",
-    email: "abrown@xyz.com"
-  }
-];
 
 class Table1 extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      users: []
+    };
+  }
+
+  componentDidMount = () => {
+    const userRef = firebase.database().ref("users");
+    userRef.on("value", snapShot => {
+      let users = snapShot.val();
+      console.log("asjbdas", snapShot.val());
+      let newState = [];
+      for (let user in users) {
+        newState.push({
+          Id: user,
+          Image: <img src={face} alt="face" width="40" />,
+          Name: users[user].name,
+          email: users[user].email
+        });
+      }
+      this.setState({
+        users: newState
+      });
+    });
+  };
+
   render() {
+    // debugger;
+    // console.log("user db => ", this.state.users);
     const columns = [
       { title: "Image", dataIndex: "Image", key: "Image" },
       {
         title: "Name",
         dataIndex: "Name",
         key: "Name",
-        render: (text, index, rowKey) => (
-          <Link to={`/users/${rowKey}`}>{text}</Link>
-        )
+        Id: "Id",
+        render: (text, index, rowKey) => {
+          console.log(text, index, rowKey, index.Id, "testKet");
+          return (
+            <Link
+              to={{
+                pathname: `/users/${index.Id}`,
+                state: {
+                  userId: this.state.users[rowKey].Id
+                }
+              }}
+            >
+              {text}
+            </Link>
+          );
+        }
       },
 
       { title: "email", dataIndex: "email", key: "email" }
@@ -82,8 +88,8 @@ class Table1 extends Component {
         <div className="content">
           <Table
             columns={columns}
-            dataSource={data}
-            pagination={false}
+            dataSource={this.state.users}
+            pagination={true}
             bordered={true}
             rowKey="Id"
           />
@@ -93,4 +99,4 @@ class Table1 extends Component {
   }
 }
 
-export default Table1;
+export default withRouter(Table1);

@@ -33,14 +33,14 @@ class App extends Component {
           <Route exact path="/(dashboard|admin)" component={Dashboard} />
           <Route exact path="/users" component={User} />
           <Route exact path="/factories" component={Factories} />
-          <Route exact path="/users/([0-5])" component={ViewUsers} />
-          <Route exact path="/factories/([0-5])" component={ViewFactory} />
+          <Route exact path="/users/:id" component={ViewUsers} />
+          <Route exact path="/factories/:id" component={ViewFactory} />
           <Route path="/users/edit" component={EditUser} />
           <Route path="/users/add" component={AddUser} />
           <Route exact path="/projects" component={Projects} />
-          <Route exact path="/projects/([0-5])" component={ViewProject} />
+          <Route exact path="/projects/:id" component={ViewProject} />
           <Route exact path="/products" component={Products} />
-          <Route exact path="/products/([0-5])" component={ViewProduct} />
+          <Route exact path="/products/:id" component={ViewProduct} />
         </div>
       </BrowserRouter>
     );
