@@ -20,10 +20,22 @@ class viewUsers extends Component {
     };
   }
 
-  componentDidMount = () => {
+  componentDidMount() {
+    this.getData();
+    console.log("mount");
+  }
+
+  componentWillReceiveProps = nextProps => {
+    if (this.props.match.params.id !== nextProps.match.params.id) {
+      this.getData();
+    }
+  };
+
+  getData = () => {
     console.log("adss", this.props.match.params.id);
     uid = this.props.match.params.id;
     let tempObj = {};
+
     const userRef = firebase.database().ref(`users/${uid}`);
     userRef.on("value", snapShot => {
       console.log("ajsbdka", snapShot.val());
@@ -40,6 +52,10 @@ class viewUsers extends Component {
     });
   };
 
+  componentWillUnmount() {
+    this.setState({ userDate: {} });
+  }
+
   render() {
     const { userDate } = this.state;
     console.log("kansdkajs", userDate, this.props);
@@ -48,7 +64,7 @@ class viewUsers extends Component {
       return (
         <Layout className="layout">
           <div className="header-inner">
-            <h3>Basic Details Page</h3>
+            <h3>Basic Details</h3>
             <Breadcrumb className="bread">
               <Breadcrumb.Item>
                 <Link to="/dashboard">Home</Link>
@@ -68,6 +84,7 @@ class viewUsers extends Component {
                 htmlType="submit"
                 className="btn-small fr"
                 onClick={this.handleEdit}
+                style={{ fontSize: 18 }}
               >
                 Edit Details
               </Button>
@@ -108,6 +125,17 @@ class viewUsers extends Component {
                   <b>Email:</b> {userDate.email}
                 </Col>
               </Row>
+              <Row>
+                <Col lg={{ span: 8, offset: 0 }}>
+                  <b>KYC:</b> {userDate.Kyc ? "YES" : "NO"}
+                </Col>
+                <Col lg={{ span: 8, offset: 0 }}>
+                  <b>Limit:</b> {userDate.limit}
+                </Col>
+                <Col lg={{ span: 8, offset: 0 }}>
+                  <b>Locked:</b> {userDate.isLocked ? "YES" : "NO"}
+                </Col>
+              </Row>
               <hr />
               {/* <h3>Contributions</h3>
             <Row>
@@ -127,7 +155,7 @@ class viewUsers extends Component {
           </Content>
         </Layout>
       );
-    else return <WrappedRegistrationForm userId={uid} />;
+    else return <WrappedRegistrationForm userId={uid} userData={userDate} />;
   }
 }
 

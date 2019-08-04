@@ -32,21 +32,21 @@ const residences = [
 ];
 const residences1 = [
   {
-    value: "YES",
+    value: true,
     label: "YES"
   },
   {
-    value: "NO",
+    value: false,
     label: "NO"
   }
 ];
 const residences2 = [
   {
-    value: "YES",
+    value: true,
     label: "YES"
   },
   {
-    value: "NO",
+    value: false,
     label: "NO"
   }
 ];
@@ -90,7 +90,8 @@ class RegistrationForm extends Component {
         updateConfig
           .update({
             limit: values.residence[0],
-            kyc: values.residence1[0]
+            Kyc: values.residence1[0],
+            isLocked: values.residences2[0]
           })
           .then(() => {
             console.log("acds", this.props);
@@ -136,7 +137,8 @@ class RegistrationForm extends Component {
   };
 
   render() {
-    console.log("asdas", this.props.userId);
+    const { userData } = this.props;
+    console.log("asdas", this.props);
     const { getFieldDecorator } = this.props.form;
     const { autoCompleteResult } = this.state;
 
@@ -156,7 +158,7 @@ class RegistrationForm extends Component {
     return (
       <div>
         <div className="header-inner">
-          <h3>Edit Details Page</h3>
+          <h3>Edit Details</h3>
           <Breadcrumb className="bread">
             <Breadcrumb.Item>
               <Link to="/dashboard">Home</Link>
@@ -172,10 +174,11 @@ class RegistrationForm extends Component {
           <Form onSubmit={this.handleSubmit} className="form-item">
             <FormItem {...formItemLayout} label="KYC">
               {getFieldDecorator("residence1", {
+                initialValue: [userData.Kyc],
                 rules: [
                   {
                     type: "array",
-                    required: true,
+                    required: false,
                     message: "Please select KYC!"
                   }
                 ]
@@ -183,10 +186,11 @@ class RegistrationForm extends Component {
             </FormItem>
             <FormItem {...formItemLayout} label="LIMIT">
               {getFieldDecorator("residence", {
+                initialValue: [userData.limit],
                 rules: [
                   {
                     type: "array",
-                    required: true,
+                    required: false,
                     message: "Please select Limit!"
                   }
                 ]
@@ -194,10 +198,11 @@ class RegistrationForm extends Component {
             </FormItem>
             <FormItem {...formItemLayout} label="Locked">
               {getFieldDecorator("residences2", {
+                initialValue: [userData.isLocked],
                 rules: [
                   {
                     type: "array",
-                    required: true,
+                    required: false,
                     message: "Please select Lock Status!"
                   }
                 ]

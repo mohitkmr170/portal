@@ -68,7 +68,8 @@ class Login extends Component {
           )}
           <div>
             {/* <img className="login-logo" src={Logo} alt="LOGO" width="120" /> */}
-            <h2 className="headers">MOBILE WALLET</h2>
+            <h2 className="headers">Demo Bank</h2>
+            <h2 className="headers">Mobile Wallet</h2>
             <FormItem>
               {getFieldDecorator("userName", {
                 rules: [
@@ -112,6 +113,7 @@ class Login extends Component {
                 type="primary"
                 htmlType="submit"
                 className="login-form-button btn-large "
+                style={{ fontSize: 18, fontWeight: "900" }}
               >
                 {this.state.isLoading ? (
                   <div>

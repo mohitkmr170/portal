@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Table } from "antd";
 import firebase from "../../firebase.js";
 import Workbook from "react-excel-workbook";
+import moment from "moment";
 
 let data = [];
 
@@ -14,7 +15,6 @@ class Table1 extends Component {
   }
 
   componentDidMount = async () => {
-    console.log("aefasd", this.props);
     let arr = [];
     let transactionList = [];
     const userRef = firebase.database().ref(`users/${this.props.userId}`);
@@ -22,7 +22,7 @@ class Table1 extends Component {
       transactionList = snap.val().transactionList;
     });
     console.log("jahvdas", transactionList);
-    const tList = firebase.database().ref("transactions");
+    const tList = firebase.database().ref("transactions/");
     tList.on("value", snap => {
       let newState = [];
       let list = snap.val();
@@ -46,6 +46,7 @@ class Table1 extends Component {
   };
 
   render() {
+    console.log("aefasd", this.state);
     data = [];
     console.log("ajsndas", this.state.transactionList);
     this.state.transactionList.map((item, index) => {
@@ -53,10 +54,25 @@ class Table1 extends Component {
         key: index,
         ProjectTitle: item.id,
         Location: "Test User 1",
-        Manager: "Test User",
-        Product: item.time,
-        Tags: item.amount,
-        Time: item.type === "add" ? "Cr" : "Dr",
+        Manager:
+          item.type === "add"
+            ? "Self"
+            : item.sender === this.props.userId
+            ? ""
+            : item.sender,
+        Product: moment(item.time).format("LLLL"),
+        Tags: (
+          <div
+            style={{
+              flex: 1,
+              textAlign: "center"
+            }}
+          >
+            {parseFloat(item.amount).toFixed(2)}
+          </div>
+        ),
+        Tagss: parseFloat(item.amount).toFixed(2),
+        Time: item.sender === this.props.userId ? "Dr" : "Cr",
         Machines: "100",
         Ratings: "100"
       });
@@ -69,9 +85,9 @@ class Table1 extends Component {
         key: "Project Title"
       },
       // { title: "Payer", dataIndex: "Location", key: "Location" },
-      // { title: "Payee", dataIndex: "Manager", key: "Manager" },
+      { title: "Payee", dataIndex: "Manager", key: "Manager" },
       { title: "Time Stamp", dataIndex: "Product", key: "Product" },
-      { title: "Amount", dataIndex: "Tags", key: "Tags" },
+      { title: "Amount", dataIndex: "Tagss", key: "Tags" },
       { title: "Dr/Cr", dataIndex: "Time", key: "Time" }
     ];
 
@@ -84,25 +100,35 @@ class Table1 extends Component {
           bordered={true}
           // rowKey="Id"
         />
-        <div className="row text-center" style={{ marginTop: "30px" }}>
+        <div
+          className="row text-center"
+          style={{ marginTop: "30px", paddingHorizontal: 20 }}
+        >
           <Workbook
-            filename="example.xlsx"
+            filename="transaction.xlsx"
             element={
               <button
                 style={{
                   backgroundColor: "#2D92F9",
                   color: "#fff",
                   padding: 8,
-                  borderRadius: 8
+                  borderRadius: 8,
+                  fontSize: 18
                 }}
               >
                 Download Document
               </button>
             }
           >
-            <Workbook.Sheet data={data} name="Sheet A">
-              <Workbook.Column label="id" value="id" />
-              <Workbook.Column label="amount" value="amount" />
+            <Workbook.Sheet data={data} name="Transaction Details">
+              <Workbook.Column
+                label="Transaction ID        "
+                value="ProjectTitle"
+              />
+              <Workbook.Column label="Amount" value="Tagss" />
+              <Workbook.Column label="Sender" value="Manager" />
+              <Workbook.Column label="Time" value="Product" />
+              <Workbook.Column label="Dr/Cr" value="Time" />
             </Workbook.Sheet>
           </Workbook>
         </div>
